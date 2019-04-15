@@ -1,0 +1,323 @@
+/********* Fonts *********/
+@font-face {
+    font-family: aladin;
+    src: url(Aladin-Regular.ttf);
+}
+
+/********* For All Elements *********/
+* {
+    font-family: aladin;
+}
+
+/********* For Body Element *********/
+body {
+    overflow-x: hidden;
+    background-color:#EEEEEE;
+}
+
+/********* For Transparent Background *********/
+.transparentScreen {
+    background-color: rgba(0, 0, 0, 0.498039);/*rgba(0, 0, 0,0.7);*/
+}
+
+
+.submit {
+
+}
+
+/********* For Error Message *********/
+.errorMessage {
+    font-size:20px;
+    color:red;
+    text-align: center;
+}
+
+.navbar {
+    font-size: medium;
+}
+.affix {
+    top: 0;
+    width: 100%;
+}
+
+.affix + .container-fluid {
+    padding-top: 70px;
+}
+
+/***       Bootstrap Menu         ***/  
+/* navbar */
+.navbar {
+    background-color: darkred; /*#F8F8F8;*/
+    border-color: darkred; /*#E7E7E7;*/
+
+}
+/* Title */
+.navbar .navbar-brand {
+
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+
+}
+/* Link */
+.navbar .navbar-nav > li > a {
+    color: yellow;
+}
+
+.navbar .navbar-nav > li {
+    padding-bottom: 2px;
+}
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus {
+    color: darkred;
+    background-color: yellow;
+    border-radius:20px;
+}
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus {
+    color: darkred;
+    background-color: yellow;/*#d6d609;*/
+    border-radius:20px;
+}
+.navbar .navbar-nav > .open > a,
+.navbar .navbar-nav > .open > a:hover,
+.navbar .navbar-nav > .open > a:focus {
+    color: darkred;
+    background-color: yellow;
+    border-radius:20px;
+}
+
+/* Caret */
+.navbar .navbar-nav > .dropdown > a .caret {
+    border-top-color: yellow;
+    border-bottom-color: yellow;
+}
+
+.navbar .navbar-nav > .active > a .caret {
+    border-top-color: darkred;
+    border-bottom-color: darkred;
+}
+
+.navbar .navbar-nav > .dropdown > a:hover .caret,
+.navbar .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: darkred;
+    border-bottom-color: darkred;
+}
+.navbar .navbar-nav > .dropdown > .dropdown-menu { 
+    padding-top:2px;
+    background: darkred;
+    color:yellow;
+}
+.navbar .navbar-nav > .dropdown > .dropdown-menu li{
+    border-bottom:2px solid white;
+    color:yellow;
+}
+.navbar .navbar-nav > .dropdown > .dropdown-menu li a:hover,
+.navbar .navbar-nav > .dropdown > .dropdown-menu li a:focus{
+    background: #ae5555;
+    color:white;
+} 
+/*.navbar .navbar-nav > .dropdown:hover > .dropdown-menu{
+    display:block;
+} */
+
+.navbar .navbar-nav > .dropdown-menu:hover > .dropdown,
+.navbar .navbar-nav > .dropdown-menu:focus > .dropdown{
+    color: darkred;
+    background-color: yellow;
+    border-radius:20px;
+} 
+
+.navbar .navbar-nav > .dropdown > .dropdown-menu li a{
+    color:yellow;
+}
+
+.navbar .navbar-nav > .open > a .caret,
+.navbar .navbar-nav > .open > a:hover .caret,
+.navbar .navbar-nav > .open > a:focus .caret {
+    border-top-color: darkred;
+    border-bottom-color: darkred;
+}
+/* Mobile version */
+.navbar .navbar-toggle {
+    border-color: darkred;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+    background-color: darkred;
+}
+.navbar .navbar-toggle .icon-bar {
+    background-color: darkred;
+}
+@media (max-width: 767px) {
+    .navbar .navbar-nav .open .dropdown-menu > li > a {
+        color: yellow;
+    }
+    .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: white;
+    }
+}
+
+.cseDeptInfo {
+    margin-top:0.9%;
+    height:100px;
+    background: #00695C;
+    margin-right: 10px;
+    display: flex;
+    color:#ddd;
+}
+
+.cseDeptInfo:hover {
+    background:#009e8a;
+    color:white;
+}
+
+.cseDeptInfo:hover img {
+
+}
+.civilDeptInfo {
+    margin-top:0.9%;
+    height:100px;
+    background: #BF360C;
+    display: flex;
+    color:#ddd;
+}
+
+.civilDeptInfo:hover {
+    background:#e8410d;
+    color:white;
+}
+
+.civilDeptInfo:hover img {
+
+}
+
+.eceDeptInfo {
+    margin-top:1%;
+    height:100px; 
+    margin-top:10px;
+    background: #C68d4a;
+    margin-right: 10px;
+    display: flex;
+    color:#ddd;
+}
+
+.eceDeptInfo:hover {
+    background:#e5a354;
+    color:white;
+}
+
+.eceDeptInfo:hover img {
+
+}
+
+.eeeDeptInfo {
+    margin-top:1%;
+    height:100px; 
+    margin-top:10px;
+    background: #314D68;
+    display: flex;
+    color:#ddd;
+}
+
+.eeeDeptInfo:hover {
+    background:#4a739b;
+    color:white;
+}
+
+.eeeDeptInfo:hover img {
+
+}
+
+.mechDeptInfo {
+    margin-top:1%;
+    height:100px; 
+    margin-top:10px;
+    background: #2A353c;
+    margin-right: 20px;
+    display: flex;
+    color:#ddd;
+}
+
+.mechDeptInfo:hover {
+    background:#4a5f6b;
+    color:white;
+}
+
+.mechDeptInfo:hover img {
+
+}
+
+.homeImgBg {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background:url('/images/MD_1.png'); 
+    background-size: cover;
+}
+
+.det li {
+    display: block;
+}
+
+.det li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e084";
+    font-family: 'Glyphicons Halflings';
+    font-size: 12px;
+    float: left;
+    margin-top: 2px;
+    margin-left: -17px;
+    color: darkred;
+}
+
+/**
+    1. Greater Sign ==>  "\e080"
+    2. Circular Success ==> \e084
+**/
+
+.clgQuotes {
+    -webkit-animation: rotateText 10s infinite; /* Safari 4.0 - 8.0 */
+    animation: rotateText 10s infinite;
+    position:relative;
+}
+
+@-webkit-keyframes rotateText {
+    from {
+        transform:rotateY(0deg);
+    }
+    to {
+        transform:rotateY(360deg);
+    }
+}
+
+@keyframes rotateText {
+    from {
+        transform:rotateY(0deg);
+    }
+    to {
+        transform:rotateY(360deg);
+    }
+}
+
+.btn {
+    width:70px;
+}
+
+input,textarea {
+    border:0px !important;
+}
+
+input:hover,input:active,input:focus,textarea:hover,textarea:active,textarea:focus {
+    border: 0px !important;
+    border-bottom:2px solid black !important;
+    border-right:2px solid black !important; 
+    border-radius: 3px !important;
+}
+.btn.btn-danger {
+    box-shadow: inset 7px 7px 18px brown;
+}
+.btn.btn-danger:hover,.btn.btn-danger:active,.btn.btn-danger:focus {
+    box-shadow: inset 7px 7px 18px #8b0000;
+}
