@@ -43,9 +43,8 @@ public class UserDataResultSetExtractor implements ResultSetExtractor<UserDetail
             userDetails.setEmail(rs.getString("email"));
             userDetails.setPhNumber(rs.getString("phnumber"));
             userDetails.setExpectedDept(utilityDAO.getDept(rs.getString("expecteddept")));
-            userDetails.setIsAdmin(rs.getBoolean("isadmin"));
             userDetails.setIsattended(rs.getBoolean("isattended"));
-            userDetails.setUltimateAdmin(rs.getBoolean("ultimateadmin"));
+            userDetails.setRole(rs.getString("role"));
             return userDetails;
         }
         return null;

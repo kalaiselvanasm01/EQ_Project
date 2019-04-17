@@ -40,9 +40,9 @@ public class UserController {
      * @param model
      * @return login
      **/
-    @RequestMapping(value = "/viewLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/viewLogin")
     public String loginView(@RequestParam(value="error",required=false)String error, Model model) {
-        model.addAttribute("userDetails", new UserDetails());
+       // model.addAttribute("userDetails", new UserDetails());
         if(error!=null && error.trim().equalsIgnoreCase("")) {
         	model.addAttribute("error", error);
         }
@@ -58,22 +58,20 @@ public class UserController {
      * @return home or login
      **/
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@ModelAttribute("userDetails") UserDetails userDetails, HttpServletRequest request, HttpServletResponse response, RedirectAttributes model) {
+    public String login(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response, RedirectAttributes model) {
         HttpSession session = request.getSession(false);
         TestHistory testHistory=null;
+        UserDetails userDetails=new UserDetails();
+        userDetails.setUserName(userName);
+        userDetails.setPassword(password);
         if(session==null || session.getAttribute("userDetails")==null){
             try {
                 UserDetails resultBean = loginDAO.isValidUser(userDetails);
                 if (resultBean != null) {
                     session = request.getSession();
                     session.setAttribute("userDetails", resultBean);
-                    session.setAttribute("role", "Student");
+                    session.setAttribute("role", resultBean.getRole());
                     model.addFlashAttribute("LOGIN",true);
-                    if(resultBean.isUltimateAdmin()) {
-                        session.setAttribute("role", "Ultimate Admin");
-                    } else if (resultBean.isIsAdmin()) {
-                        session.setAttribute("role", "Admin");
-                    }
                     if(resultBean.isIsattended()) {
                         testHistory=loginDAO.getTestHistory(userDetails.getUserName(), userDetails);
                         session.setAttribute("testHistory", testHistory);
@@ -88,7 +86,7 @@ public class UserController {
                 model.addFlashAttribute(QueryConstants.ERROR, "EQException occurred while trying to check the UserDetails");
             }
         }
-        //return "redirect:/viewHome";
+        return "redirect:/viewHome";
     }
 
     /**

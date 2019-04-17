@@ -23,9 +23,8 @@ public class UserDetails {
     private String email;
     private String phNumber;
     private Dept expectedDept;
-    private boolean isAdmin = false;
+    private String role = "STUDENT";
     private boolean isattended;
-    private boolean ultimateAdmin=false;
 
     public String getUserName() {
         return userName;
@@ -61,14 +60,6 @@ public class UserDetails {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public boolean isUltimateAdmin() {
-        return ultimateAdmin;
-    }
-
-    public void setUltimateAdmin(boolean ultimateAdmin) {
-        this.ultimateAdmin = ultimateAdmin;
     }
 
     public void setLastName(String lastName) {
@@ -163,14 +154,6 @@ public class UserDetails {
         this.expectedDept = expectedDept;
     }
 
-    public boolean isIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
     public boolean isIsattended() {
         return isattended;
     }
@@ -178,8 +161,16 @@ public class UserDetails {
     public void setIsattended(boolean isattended) {
         this.isattended = isattended;
     }
+    
+    public String getRole() {
+		return role;
+	}
 
-    @Override
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 41 * hash + (this.userName != null ? this.userName.hashCode() : 0);
@@ -204,8 +195,4 @@ public class UserDetails {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "UserDetails{" + "userName=" + userName + ", password=" + password + ", dateOfBirth=" + dateOfBirth + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", fatherName=" + fatherName + ", address=" + address + ", nationality=" + nationality + ", religion=" + religion + ", hscGroup=" + hscGroup + ", expObtHSCMark=" + expObtHSCMark + ", bloodGroup=" + bloodGroup + ", email=" + email + ", phNumber=" + phNumber + ", expectedDept=" + expectedDept + ", isAdmin=" + isAdmin + ", isattended=" + isattended + ", ultimateAdmin=" + ultimateAdmin + '}';
-    }
 }

@@ -25,6 +25,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component(value = "loginDAO")
@@ -47,7 +48,7 @@ public class LoginDAO implements ILoginDAO {
     public UserDetails isValidUser(UserDetails userDetails) throws EQException {
         UserDetails responseUserDetails = null;
         try {
-            responseUserDetails = jdbcTemplate.query(QueryConstants.LOGIN_QUERY, new Object[]{userDetails.getUserName(), passwordDAO.convertPasswordToMD5(userDetails.getPassword())}, userDataResultSetExtractor);
+            responseUserDetails = jdbcTemplate.query(QueryConstants.LOGIN_QUERY_SELECT, new Object[]{userDetails.getUserName(), passwordDAO.convertPasswordToMD5(userDetails.getPassword())}, userDataResultSetExtractor);
         } catch (EQException exception) {
             LOGGER.info("Exception occured while trying to check Login Details", exception);
             throw new EQException("Exception occured while trying to check Login Details");
@@ -59,7 +60,7 @@ public class LoginDAO implements ILoginDAO {
     }
 
     public boolean isAdmin(UserDetails userDetails) throws EQException {
-        return userDetails.isIsAdmin();
+        return (userDetails.getRole()!=null && userDetails.getRole().equalsIgnoreCase("admin"));
     }
 
     public boolean createUser(final UserDetails userDetails) throws EQException {
@@ -84,8 +85,14 @@ public class LoginDAO implements ILoginDAO {
                         ps.setString(14, userDetails.getEmail());
                         ps.setString(15, userDetails.getPhNumber());
                         ps.setString(16, userDetails.getExpectedDept().getDescription());
-                        ps.setBoolean(17, userDetails.isIsAdmin());
-                        ps.setBoolean(18, userDetails.isUltimateAdmin());
+                        ps.setString(17, "STUDENT");
+                        ps.setBoolean(18, true);
+                        ps.setBoolean(19, false);
+                        
+                        ///INSERT INTO userdetails(
+                        ///username, password, dateofbirth, firstname, lastname, gender, fathername, address, nationality, religion, 
+                        ///hscgroup, expobthscmark, bloodgroup, email, phnumber, expecteddept, role, enabled, isattended) 
+                        ///VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                     } catch (EQException eqException) {
                         LOGGER.info("EQException occured while trying to retrieve password from UserDetails Bean", eqException);
                     }
@@ -253,13 +260,12 @@ public class LoginDAO implements ILoginDAO {
                             userDetails.setFirstName(rs.getString("firstname"));
                             userDetails.setGender(Gender.valueOf(rs.getString("gender")));
                             userDetails.setHscGroup(rs.getString("hscgroup"));
-                            userDetails.setIsAdmin(rs.getBoolean("isadmin"));
                             userDetails.setIsattended(rs.getBoolean("isattended"));
                             userDetails.setLastName(rs.getString("lastname"));
                             userDetails.setNationality(rs.getString("nationality"));
                             userDetails.setPhNumber(rs.getString("phnumber"));
                             userDetails.setReligion(rs.getString("religion"));
-                            userDetails.setUltimateAdmin(rs.getBoolean("ultimateadmin"));
+                            userDetails.setRole(rs.getString("role"));
                             testHistory=new TestHistory();
                             testHistory.setUserDetails(userDetails);
                             testHistory.setAttendedDate(rs.getString("attendeddate"));
@@ -344,9 +350,8 @@ public class LoginDAO implements ILoginDAO {
                         userDetails.setEmail(rs.getString("email"));
                         userDetails.setPhNumber(rs.getString("phnumber"));
                         userDetails.setExpectedDept(utilityDAO.getDept(rs.getString("expecteddept")));
-                        userDetails.setIsAdmin(rs.getBoolean("isadmin"));
                         userDetails.setIsattended(rs.getBoolean("isattended"));
-                        userDetails.setUltimateAdmin(rs.getBoolean("ultimateadmin"));
+                        userDetails.setRole(rs.getString("role"));
                         userDetailsList.add(userDetails);
                     }
                     return userDetailsList;

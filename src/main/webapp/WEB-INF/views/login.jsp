@@ -23,12 +23,12 @@
                     <img src="/images/login_edited.png" alt="Login" width="300" height="120" />
                 </div>
                 <div class="modal-body">
-                <form:form action="j_security_check" method="POST" modelAttribute="userDetails">
+                <form:form action="/j_spring_security_check" method="POST">
                     <div class="form-group">
-                        <input type="text" autocomplete="off" class="form-control input-lg" title="Username" id="usernameTxt" name="j_username" placeholder="Username" required/>
+                        <input type="text" autocomplete="off" class="form-control input-lg" title="Username" id="usernameTxt" name="userName" placeholder="Username" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" autocomplete="off" class="form-control input-lg" title="Password" id="password" name="j_password" placeholder="Password" required/>
+                        <input type="password" autocomplete="off" class="form-control input-lg" title="Password" id="password" name="password" placeholder="Password" required/>
                     </div>
                     <c:if test="${not empty error}">
                         <div class="errorMessage" align="center">
