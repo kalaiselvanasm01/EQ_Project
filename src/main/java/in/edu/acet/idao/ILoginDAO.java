@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ILoginDAO {
 
-    public UserDetails isValidUser(UserDetails userDetails) throws EQException;
+    public UserDetails isValidUser(String userName) throws EQException;
 
     public boolean isAdmin(UserDetails userDetails) throws EQException;
 

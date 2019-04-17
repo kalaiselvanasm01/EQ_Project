@@ -1,7 +1,7 @@
 package in.edu.acet.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import in.edu.acet.bean.UserDetails;
@@ -13,13 +13,13 @@ public class PasswordDAO implements IPasswordDAO {
 
     
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder passwordEncoder;
         
     public String convertPasswordToMD5(String password) throws EQException {
-    	return bCryptPasswordEncoder.encode(password);
+    	return passwordEncoder.encode(password);
     }
 
     public String convertPasswordToMD5(UserDetails userDetails) throws EQException {
-       return bCryptPasswordEncoder.encode(userDetails.getPassword());
+       return passwordEncoder.encode(userDetails.getPassword());
     }
 }

@@ -6,7 +6,7 @@ public class QueryConstants {
 			.append(" FROM userdetails WHERE username=?").toString();
 	
 	public static final String LOGIN_QUERY_SELECT = new StringBuilder("SELECT username, dateofbirth, firstname, lastname, gender, fathername, address, nationality, religion, hscgroup, expobthscmark, bloodgroup, email, phnumber, expecteddept, role, enabled, isattended")
-			.append(" FROM userdetails WHERE username=? AND password=? AND enabled=TRUE;").toString();
+			.append(" FROM userdetails WHERE username=?").toString();
 
 	public static final String ROLE_QUERY = new StringBuilder("SELECT username, role")
 			.append(" FROM userdetails WHERE username=?").toString();

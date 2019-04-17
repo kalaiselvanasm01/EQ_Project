@@ -128,7 +128,7 @@
             </c:otherwise>
         </c:choose>
         <c:choose>
-            <c:when test="${sessionScope.userDetails.isAdmin ne true || sessionScope.userDetails.isAdmin ne true && sessionScope.userDetails.ultimateAdmin ne true}">
+            <c:when test="${sessionScope.userDetails.role ne 'ADMIN' && sessionScope.userDetails.role ne 'UADMIN'}">
                 <c:choose>
                     <c:when test="${testPageURL eq '#' || aboutTestPageURL eq '#'}">
                         <li class="active dropdown">
@@ -184,7 +184,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Role: <c:out value="${sessionScope.role}" /></a></li>
                         <c:choose>
-                            <c:when test="${sessionScope.role eq 'Admin'}">
+                            <c:when test="${sessionScope.role eq 'ADMIN'}">
                                 <li><a href="<c:out value="${resetPasswordPageURL}" />">Reset Student Password</a></li>
                                 <li><a href="<c:out value="${addQuestionPageURL}" />">Add Questions</a></li>
                                 <li><a href="<c:out value="${deleteQuestionPageURL}" />">Remove Questions</a></li>
@@ -192,7 +192,7 @@
                                 <li><a href="<c:out value="${editQuestionPageURL}" />">Update Questions</a></li>
                                 <li><a href="<c:out value="${testHistoryPageURL}" />">Test History</a></li>
                             </c:when>
-                            <c:when test="${sessionScope.role eq 'Ultimate Admin'}">
+                            <c:when test="${sessionScope.role eq 'UADMIN'}">
                                 <li><a href="<c:out value="${resetPasswordPageURL}" />">Reset Student Password</a></li>
                                 <li><a href="<c:out value="${addQuestionPageURL}" />">Add Questions</a></li>
                                 <li><a href="<c:out value="${deleteQuestionPageURL}" />">Remove Questions</a></li>

@@ -1,14 +1,5 @@
 package in.edu.acet.dao;
 
-import in.edu.acet.bean.TestHistory;
-import in.edu.acet.bean.UserDetails;
-import in.edu.acet.constants.QueryConstants;
-import in.edu.acet.enums.Gender;
-import in.edu.acet.exception.EQException;
-import in.edu.acet.extractor.UserDataResultSetExtractor;
-import in.edu.acet.idao.ILoginDAO;
-import in.edu.acet.idao.IPasswordDAO;
-import in.edu.acet.idao.IUtilityDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +17,17 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import in.edu.acet.bean.TestHistory;
+import in.edu.acet.bean.UserDetails;
+import in.edu.acet.constants.QueryConstants;
+import in.edu.acet.enums.Gender;
+import in.edu.acet.exception.EQException;
+import in.edu.acet.extractor.UserDataResultSetExtractor;
+import in.edu.acet.idao.ILoginDAO;
+import in.edu.acet.idao.IPasswordDAO;
+import in.edu.acet.idao.IUtilityDAO;
 
 @Component(value = "loginDAO")
 public class LoginDAO implements ILoginDAO {
@@ -45,13 +46,10 @@ public class LoginDAO implements ILoginDAO {
     @Autowired
     private IUtilityDAO utilityDAO;
     
-    public UserDetails isValidUser(UserDetails userDetails) throws EQException {
+    public UserDetails isValidUser(String userName) throws EQException {
         UserDetails responseUserDetails = null;
         try {
-            responseUserDetails = jdbcTemplate.query(QueryConstants.LOGIN_QUERY_SELECT, new Object[]{userDetails.getUserName(), passwordDAO.convertPasswordToMD5(userDetails.getPassword())}, userDataResultSetExtractor);
-        } catch (EQException exception) {
-            LOGGER.info("Exception occured while trying to check Login Details", exception);
-            throw new EQException("Exception occured while trying to check Login Details");
+            responseUserDetails = jdbcTemplate.query(QueryConstants.LOGIN_QUERY_SELECT, new Object[]{userName}, userDataResultSetExtractor);
         } catch (DataAccessException exception) {
             LOGGER.info("Exception occured while trying to check Login Details", exception);
             throw new EQException("Exception occured while trying to check Login Details");

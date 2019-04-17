@@ -57,23 +57,20 @@ public class UserController {
      * @param model
      * @return home or login
      **/
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response, RedirectAttributes model) {
+    @RequestMapping(value = "/login")
+    public String login( HttpServletRequest request, HttpServletResponse response, RedirectAttributes model) {
         HttpSession session = request.getSession(false);
         TestHistory testHistory=null;
-        UserDetails userDetails=new UserDetails();
-        userDetails.setUserName(userName);
-        userDetails.setPassword(password);
         if(session==null || session.getAttribute("userDetails")==null){
             try {
-                UserDetails resultBean = loginDAO.isValidUser(userDetails);
+                UserDetails resultBean = loginDAO.isValidUser(request.getRemoteUser());
                 if (resultBean != null) {
                     session = request.getSession();
                     session.setAttribute("userDetails", resultBean);
                     session.setAttribute("role", resultBean.getRole());
                     model.addFlashAttribute("LOGIN",true);
                     if(resultBean.isIsattended()) {
-                        testHistory=loginDAO.getTestHistory(userDetails.getUserName(), userDetails);
+                        testHistory=loginDAO.getTestHistory(request.getRemoteUser(), resultBean);
                         session.setAttribute("testHistory", testHistory);
                         System.err.println("Test History =====> "+testHistory.toString());
                     }
@@ -141,22 +138,6 @@ public class UserController {
             LOGGER.info("Exception occured while trying trying to Register the User",exception);
             model.addAttribute(QueryConstants.ERROR, "Exception occured while trying trying to Register the User.");
         }
-        return "redirect:/viewHome";
-    }
-
-    /**
-     * This Controller method is used to whether the session is available or not, if available that will be invalidated
-     * @param request
-     * @param model
-     * @return login
-     **/
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request, RedirectAttributes model) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        model.addFlashAttribute("message", "Logged Out Successfully!");
         return "redirect:/viewHome";
     }
 
