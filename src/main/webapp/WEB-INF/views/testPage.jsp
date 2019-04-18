@@ -43,8 +43,8 @@
                                                 <c:set var="deptValue" value="${dept}" ></c:set>
                                             </c:if>
                                         </c:forEach>
-                                        <input type="radio" name="qtnChoice${index.index+1}" class="qtnChoice" value="<c:out value="${deptValue}" />" style="margin-right:5px;"/>
-                                        <label><c:out value="${choice}" /></label>
+                                        <label><input type="radio" name="qtnChoice${index.index+1}" class="qtnChoice" value="<c:out value="${deptValue}" />" style="margin-right:5px;"/>
+                                        <c:out value="${choice}" /></label>
                                     </div>
                                 </c:forEach>
                                 <c:if test="${question.hasImage eq true}">

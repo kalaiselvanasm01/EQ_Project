@@ -129,7 +129,7 @@ public class LoginDAO implements ILoginDAO {
     public UserDetails isUserAvailable(String username) throws EQException {
         UserDetails userDetails = null;
         try {
-            userDetails = jdbcTemplate.query(QueryConstants.CHECK_USER_QUERY, new Object[]{username}, userDataResultSetExtractor);
+            userDetails = jdbcTemplate.query(QueryConstants.LOGIN_QUERY_SELECT, new Object[]{username}, userDataResultSetExtractor);
         } catch (Exception exception) {
             LOGGER.info("Exception occured while trying to check the availability of User - isUserAvailable");
             throw new EQException("Exception occured while trying to check the availability of User - isUserAvailable", exception);

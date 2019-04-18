@@ -18,15 +18,6 @@
         <script src="<c:url value="${contextPath}/scripts/bootstrap.min.js" />" type="text/javascript"></script>
         <script src="<c:url value="${contextPath}/scripts/jquery.dataTables.min.js" />" type="text/javascript"></script>
         <script src="<c:url value="${contextPath}/scripts/testPage.js" />" type="text/javascript"></script>
-        <c:if test="${LOGIN eq false}">
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $("body").ready(function () {
-                        $("#userLogin").trigger("click");
-                    });
-                });
-            </script>
-        </c:if>
     </head>
     <body>
         <jsp:include page="menu.jsp" ><jsp:param name="displayPage" value="testPage"/></jsp:include>

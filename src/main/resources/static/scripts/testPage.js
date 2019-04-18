@@ -49,6 +49,7 @@ $(document).ready(function () {
                                 attended[indexNumber] = true;
                             } else {
                                 alert("Please Answer this Some Option...");
+                                return false;
                             }
                         }
                         if (typeof(Storage) !== "undefined") {

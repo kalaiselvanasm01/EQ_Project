@@ -15,15 +15,6 @@
         <script src="<c:url value="${contextPath}/scripts/jquery-3.1.1.min.js" />"></script>
         <script src="<c:url value="${contextPath}/scripts/jquery-ui.min.js" />"></script>
         <script src="<c:url value="${contextPath}/scripts/bootstrap.min.js" />" type="text/javascript"></script>
-        <c:if test="${LOGIN eq false}">
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $("body").ready(function () {
-                        $("#userLogin").trigger("click");
-                    });
-                });
-            </script>
-        </c:if>
     </head>
     <body>
         <jsp:include page="menu.jsp" ><jsp:param name="displayPage" value="homePage"/></jsp:include>
