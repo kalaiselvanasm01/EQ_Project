@@ -40,6 +40,27 @@ public class StaticPageController {
     
     private static final Logger LOGGER=LoggerFactory.getLogger(StaticPageController.class);
     
+    @RequestMapping("/viewCseDept")
+    public String viewCseDept() {
+    	return "CseDept";
+    }
+    @RequestMapping("/viewCivilDept")
+    public String viewCivilDept() {
+    	return "CivilDept";
+    }
+    @RequestMapping("/viewEceDept")
+    public String viewEceDept() {
+    	return "EceDept";
+    }
+    @RequestMapping("/viewEEEDept")
+    public String viewEEEDept() {
+    	return "EEEDept";
+    }
+    @RequestMapping("/viewMechDept")
+    public String viewMechDept() {
+    	return "MechDept";
+    }
+    
     @RequestMapping(value="/viewContacts",method=RequestMethod.GET)
     public String viewContact() {
         return "contactUs";

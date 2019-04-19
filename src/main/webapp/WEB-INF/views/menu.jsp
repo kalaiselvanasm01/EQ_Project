@@ -1,11 +1,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="homePageURL" value="${contextPath}/viewHome"></c:set>
-<c:set var="csePageURL" value="#1"></c:set>
-<c:set var="civilPageURL" value="#1"></c:set>
-<c:set var="eeePageURL" value="#1"></c:set>
-<c:set var="ecePageURL" value="#1"></c:set>
-<c:set var="mechPageURL" value="#1"></c:set>
+<c:set var="csePageURL" value="${contextPath}/viewCseDept"></c:set>
+<c:set var="civilPageURL" value="${contextPath}/viewCivilDept"></c:set>
+<c:set var="eeePageURL" value="${contextPath}/viewEEEDept"></c:set>
+<c:set var="ecePageURL" value="${contextPath}/viewEceDept"></c:set>
+<c:set var="mechPageURL" value="${contextPath}/viewMechDept"></c:set>
 <c:set var="testPageURL" value="${contextPath}/takeTest"></c:set>
 <c:set var="aboutTestPageURL" value="#1"></c:set>
 <c:set var="contactUsPageURL" value="${contextPath}/viewContacts"></c:set>
@@ -232,11 +232,5 @@
         autoHide("successModel");
     </script>
 </c:if>
-<c:choose>
-    <c:when test="${sessionScope.userDetails eq null || sessionScope.userDetails eq '' }">
-        <jsp:include page="login.jsp" ></jsp:include>
-        <jsp:include page="register.jsp"></jsp:include>
-    </c:when>
-</c:choose>
 <div class="alert alert-danger center-block" id="scriptAlertModel" style="height: 28px;padding-top: 3px;width: 30%;text-align: center;margin-top: -1.5%;border-radius: 0px 0px 40px 40px; display:none;"></div>
 <div class="alert alert-success center-block" id="scriptSuccessModel" style="height: 28px;padding-top: 3px;width: 30%;text-align: center;margin-top: -1.5%;border-radius: 0px 0px 40px 40px; display:none;"></div>
